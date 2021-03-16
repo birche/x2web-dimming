@@ -1,29 +1,10 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is a (very) rudimentary example on how to remote control the X2 web device. In this example we are controlling the brightness only, and solely for runtime, i.e. it is not persistent.
 
-### What is this repository for? ###
+### Building for Linux/Arm32 ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+GOOS=linux ARCH=arm go build -o dimmingsvc x2webdimming.go
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+### Notes on perstence ###
+If there is a need for dimming settings to be persistent on power cycles, the file /etc/beijer/misc.conf has to be edited and saved for every new dimming value change.
