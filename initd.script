@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+#
+# Daemon for the X2 web dimming service.
+# Written by Joachim Birche (github.com/birche)
+
+### BEGIN INIT INFO
+# Provides:             dimmingsvc
+# Required-Start:       $remote_fs $local_fs
+# Required-Stop:        $remote_fs $local_fs
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    backlight control web service
+### END INIT INFO
+
+DAEMON=/usr/bin/dimmingsvc
+
+start() {
+    echo -n "Starting X2 web backlight dimming service.."
+    start-stop-daemon -S -x $DAEMON & > /dev/null 2>&1
+    echo "."
+}
+
+stop() {
+    echo -n "Stopping X2 web backlight dimming service.."
+    start-stop-daemon -K -x $DAEMON
+    echo "."
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $DAEMON
+        ;;
+    *)
+    echo "Usage: /etc/init.d/x2webdimming {start|stop|status}"
+    exit 1
+    ;;
+esac
+
+exit 0
