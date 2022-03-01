@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"strconv"
 
 	"gopkg.in/ini.v1"
@@ -70,8 +71,21 @@ func brightnessHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func rebootHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Reboot handler")
+	cmd := exec.Command("reboot")
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println("Failed to reboot device...")
+	}
+	fmt.Fprintf(w, "Rebooting device. Bye!")
+}
+
 func main() {
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/backlightsvc", brightnessHandler)
+	http.HandleFunc("/reboot", rebootHandler)
+
+	fmt.Println("Starting server...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
