@@ -15,9 +15,17 @@ mount -o remount,rw /
 Use scp from PC to copy files. Ex:
 scp source-filename root@{x2web ip address}:/path/dest-filename
 
-### Install daemon
+### Install systemd service
+Remount fs to read/write and store the file x2dimming.service in the /etc/systemd/system/ folder.
+This is the new preferred way, the init.d folder was removed in 2022.74.
+
+To copy the file, use for instance, $ scp x2dimming.service root@{ipaddress}:/etc/systemd/system/x2dimming.service
+
+### Install init.d daemon
+[Deprecated since 2022.74]
 Copy the initd.script to the /etc/init.d/ folder and chmod +x.
 scp initd.script /etc/init.d/x2webdimming
 
 From ssh terminal, add the service to run at bootup:
 update-rc.d x2webdimming defaults
+
