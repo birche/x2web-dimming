@@ -12,7 +12,11 @@ import (
 	"gopkg.in/ini.v1"
 )
 
+// X2 pro web series
 const lcdBrightness = "/sys/class/backlight/backlight_bempc/brightness"
+
+// X2 extreme web series (lvds)
+//const lcdBrightness = "/sys/class/backlight/backlight_lvds/brightness"
 
 //const lcdActualBrightness = "/sys/class/backlight/backlight_bempc/actual_brightness"
 const configFile = "/etc/beijer/misc.conf"
